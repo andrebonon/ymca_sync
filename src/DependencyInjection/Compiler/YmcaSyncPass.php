@@ -23,6 +23,9 @@ class YmcaSyncPass implements CompilerPassInterface {
     }
 
     $definition = new Definition('Drupal\ymca_sync\SyncRepository');
+    // As of Symfony 5.2 all services are private by default, but in Drupal
+    // services are still public. See https://www.drupal.org/node/3194517
+    $definition->setPublic(TRUE);
     $container->setDefinition('ymca_sync.sync_repository', $definition);
 
     $definition = $container->getDefinition('ymca_sync.sync_repository');
