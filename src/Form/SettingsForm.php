@@ -75,7 +75,7 @@ class SettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('ymca_sync.settings');
 
-    $active = $config->get('active_syncers');
+    $active = $config->get('active_syncers') ?? [];
     $default_value = [];
     foreach ($this->syncers->getSyncers() as $syncer) {
       if (in_array($syncer, $active)) {
